@@ -1,21 +1,18 @@
 package org.example;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class ExamplesOfjUnit5AssertionsTest {
   private final double EPSILON = 0.0000001;
 
   @Test
+  @DisplayName("Examples of jUnit assertions")
   void simpleAssertionExamples() {
     assertEquals(4, 3 + 1);
     assertEquals(4.0, 3.0 + 1.0, EPSILON);
@@ -25,6 +22,8 @@ class ExamplesOfjUnit5AssertionsTest {
     assertTrue("hello".startsWith("h")) ;
     assertTrue("hello".contains("e")) ;
     assertFalse("hello".contains("v"));
+
+    assertTimeout(Duration.ofMillis(600), () -> Thread.sleep(500)) ; ;
 
     double[] expectedArray = new double[]{1.0, 5.0, 5.2} ;
     assertArrayEquals(expectedArray, new double[]{1.0, 5.0, 5.2});
@@ -37,6 +36,7 @@ class ExamplesOfjUnit5AssertionsTest {
   }
 
   @Test
+  @DisplayName("Examples of jUnit assertions using only assertTrue (to avoid)")
   void simpleAssertionExamplesWithAssertTrue() {
     assertTrue(4 == 3 + 1);
     assertTrue(4.0 == 3.0 + 1.0);
